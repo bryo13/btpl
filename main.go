@@ -2,16 +2,20 @@ package main
 
 import (
 	"fmt"
-	"ink/lexer"
+	"ink/repl"
+	"log"
+	"os"
+	"os/user"
 )
 
 func main() {
-	code := `defun()`
-
-	lexer := lexer.NewLexer(code)
-
-	tokens := lexer.MakeTokens()
-	for _, token := range tokens {
-		fmt.Printf("Kind: %s, Value: %s\n", token.Kind, token.Value)
+	user, err := user.Current()
+	if err != nil {
+		log.Fatalln(err)
 	}
+
+	fmt.Printf("Hello %s this is Ink\n", user.Username)
+	fmt.Printf("Feel free to type in commands\n")
+
+	repl.Start(os.Stdin, os.Stdout)
 }

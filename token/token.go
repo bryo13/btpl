@@ -7,8 +7,8 @@ type Token struct {
 }
 
 var Keywords = map[string]string{
-	"defun": "defun", // used to create functions - lisp style
-	"if":    "if",
+	"defun": FUNCTION, // used to create functions - lisp style
+	"if":    IF,
 	"let":   "let",
 }
 
@@ -23,8 +23,13 @@ const (
 	UserIdentifier = "IDENT"
 
 	// errors or end of file
-	EOF = "EOF"
-	NUL = ""
+	EOF     = "EOF"
+	NUL     = ""
+	ILLEGAL = "ILLEGAL"
+
+	// keywords
+	FUNCTION = "FUNCTION"
+	IF       = "IF"
 )
 
 func CheckKeyword(val string) string {
